@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuario extends CI_Controller {
 
-
 	public function __construct()
 	{
 
@@ -19,7 +18,7 @@ class Usuario extends CI_Controller {
 	public function login()
 	{
 
-		if ( $this->session->userdata('usurlogged') ) redirect(base_url('paciente'));
+		if ($this->session->userdata('usurlogged')) redirect(base_url('paciente'));
 
 		if ($this->input->post())
 		{
@@ -71,7 +70,7 @@ class Usuario extends CI_Controller {
 	public function cadastrar()
 	{
 
-		if ( $this->session->userdata('usurlogged') ) redirect(base_url('paciente'));
+		if ($this->session->userdata('usurlogged')) redirect(base_url('paciente'));
 		
 		if ($this->input->post())
 		{
