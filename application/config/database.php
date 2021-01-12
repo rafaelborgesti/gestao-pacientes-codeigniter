@@ -75,11 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
-	'dbdriver' => 'mysqli',
+	'hostname' => @$_ENV['DB_HOST'],
+	'username' => @$_ENV['DB_USER'],
+	'password' => @$_ENV['DB_PASSWORD'],
+	'database' => @$_ENV['DB_DATABASE'],
+	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
