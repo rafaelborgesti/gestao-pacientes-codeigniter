@@ -1,28 +1,49 @@
 <main>
-    <div class="container-fluid">
+    <div class="container">
+
+    <h1 class="mt-4">Pacientes</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item active">Sidenav Light</li>
+    </ol>
+
+    <?php if ($this->session->flashdata('sucesso_mensagem')): ?>
+    <div class="alert alert-success">
+        <?php echo $this->session->flashdata('sucesso_mensagem'); ?>
+    </div>
+    <?php endif; ?>
+
+    <?php if ($this->session->flashdata('erro_mensagem')): ?>
+    <div class="alert alert-danger">
+        <?php echo $this->session->flashdata('sucesso_mensagem'); ?>
+    </div>
+    <?php endif; ?>
+
     <?php if (count($pacientes)): ?>
         <table class="table table-striped mt-4">
             <thead>
                 <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Data Nasc.</th>
-                <th scope="col">CPF</th>
-                <th scope="col">CNS</th>
-                <th scope="col">UF</th>
-                <th scope="col" style="width:  15%"></th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Data Nasc.</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">CNS</th>
+                    <th scope="col">UF</th>
+                    <th scope="col" style="width: 15%"></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach($pacientes as $paciente): ?>
                 <tr>
                     <td scope="row"><?php echo $paciente->nome ?></td>
-                    <td scope="row"><?php echo $paciente->data_nascimento ?></td>
+                    
+                    <td scope="row"><?php echo implode("/",array_reverse(explode("-",$paciente->data_nascimento))); ?></td>
                     <td scope="row"><?php echo $paciente->cpf ?></td>
                     <td scope="row"><?php echo $paciente->cns ?></td>
                     <td scope="row"><?php echo $paciente->uf ?></td>
-                    <td>
-                        <a href="<?php echo base_url("paciente/editar/".$paciente->uuid); ?>" class="">Editar</a> |
-                        <a href="javascript:void(0);" class="">Excluir</a>
+                    <td align="center">
+                        <a href="<?php echo base_url("paciente/editar/".$paciente->uuid); ?>" class="" title="Editar"><i style="color:#28a745" class="fas fa-edit"></i></a>
+                        &nbsp;&nbsp;
+                        <a href="javascript:void(0);" class="" title="Excluir"><i style="color:#dc3545" class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

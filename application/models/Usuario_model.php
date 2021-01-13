@@ -28,8 +28,8 @@ class Usuario_model extends CI_Model {
 		return $status;
     }
 
-    public function buscar_usuario_by_email($email){
-
+	public function buscar_usuario_by_email($email)
+	{
 		if (isset($email)){
 
 			$this->db->from('usuario');

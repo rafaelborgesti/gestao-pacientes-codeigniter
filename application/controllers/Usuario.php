@@ -20,8 +20,7 @@ class Usuario extends CI_Controller {
 
 		if ($this->session->userdata('usurlogged')) redirect(base_url('paciente'));
 
-		if ($this->input->post())
-		{
+		if ($this->input->post()){
 			
 			$login = $this->usuario_model->buscar_usuario_by_email($this->input->post("email"));
 
@@ -41,12 +40,12 @@ class Usuario extends CI_Controller {
 
 				} else {
 					
-					$this->session->set_flashdata('login_mensagem','Senha incorreta');
+					$this->session->set_flashdata('erro_mensagem','Senha incorreta');
 				}
 				
 			} else {
 				
-				$this->session->set_flashdata('login_mensagem','E-mail não encontrado');
+				$this->session->set_flashdata('erro_mensagem','E-mail não encontrado');
 				
 			}
 			
@@ -72,8 +71,7 @@ class Usuario extends CI_Controller {
 
 		if ($this->session->userdata('usurlogged')) redirect(base_url('paciente'));
 		
-		if ($this->input->post())
-		{
+		if ($this->input->post()){
 			
 			$data = [];
 			$data["uuid"] = $this->uuid->v4();
