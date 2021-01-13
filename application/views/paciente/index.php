@@ -44,6 +44,10 @@
                         <a href="<?php echo base_url("paciente/editar/".$paciente->uuid); ?>" class="" title="Editar"><i style="color:#28a745" class="fas fa-edit"></i></a>
                         &nbsp;&nbsp;
                         <a href="javascript:void(0);" class="" title="Excluir"><i style="color:#dc3545" class="fas fa-trash-alt"></i></a>
+                        &nbsp;&nbsp;
+                        <?php if (!$paciente->st_cadastro): ?>
+                        <i class="fas fa-exclamation-circle" title="Cadastro incompleto"></i>
+                        <?php endif; ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
