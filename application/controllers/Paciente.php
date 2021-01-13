@@ -59,7 +59,21 @@ class Paciente extends CI_Controller {
 		if (!is_object($paciente)) 
 			redirect(base_url("paciente/index/"));
 
-		if ($this->input->post()){
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<span class="text-danger small">', '</span>');
+		$this->form_validation->set_rules('nome', 'Nome', 'required');
+		$this->form_validation->set_rules('nome_mae', 'Nome mãe', 'required');
+		$this->form_validation->set_rules('data_nascimento', 'Data nascimento', 'required');
+		$this->form_validation->set_rules('cpf', 'CPF', 'required|is_unique_field[paciente.cpf.id.'.$paciente->id.'.]|validate_cpf');
+		$this->form_validation->set_rules('cns', 'CNS', 'required|is_unique_field[paciente.cns.id.'.$paciente->id.'.]|validate_cns');
+		$this->form_validation->set_rules('cep', 'CEP', 'required');
+		$this->form_validation->set_rules('logradouro', 'Logradouro', 'required');
+		$this->form_validation->set_rules('numero', 'Número', 'required');
+		$this->form_validation->set_rules('bairro', 'Bairro', 'required');
+		$this->form_validation->set_rules('estado', 'Estado', 'required');
+		$this->form_validation->set_rules('uf', 'UF', 'required');
+
+		if ($this->form_validation->run() !== FALSE){
 
 			$data = $_POST;
 			$data["nome"] = $this->input->post("nome");
