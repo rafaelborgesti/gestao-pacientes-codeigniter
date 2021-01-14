@@ -2,11 +2,12 @@
     <div class="container">
 
     <h1 class="mt-4">Pacientes</h1>
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-        <li class="breadcrumb-item active">Sidenav Light</li>
-    </ol>
+    <p><a href="<?php echo base_url("paciente/cadastrar"); ?>" class="btn btn-success">Cadastrar</a></p>
 
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Pacientes</li>
+    </ol>
+    
     <?php if ($this->session->flashdata('sucesso_mensagem')): ?>
     <div class="alert alert-success">
         <?php echo $this->session->flashdata('sucesso_mensagem'); ?>

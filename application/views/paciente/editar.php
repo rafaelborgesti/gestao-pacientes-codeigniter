@@ -3,8 +3,8 @@
 <div class="container">
     <h1 class="mt-4">Pacientes</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-        <li class="breadcrumb-item active">Sidenav Light</li>
+        <li class="breadcrumb-item"><a href="<?php echo base_url("pacientes"); ?>">Pacientes</a></li>
+        <li class="breadcrumb-item active">editar</li>
     </ol>
     <div class="card mb-4">
         <div class="card-body">
