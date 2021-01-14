@@ -16,7 +16,7 @@
 
     <?php if ($this->session->flashdata('erro_mensagem')): ?>
     <div class="alert alert-danger">
-        <?php echo $this->session->flashdata('sucesso_mensagem'); ?>
+        <?php echo $this->session->flashdata('erro_mensagem'); ?>
     </div>
     <?php endif; ?>
 
