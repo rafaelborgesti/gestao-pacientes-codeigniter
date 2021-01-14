@@ -4,8 +4,6 @@ if (!function_exists('criar_pasta')){
 	
 	function criar_pasta($pasta){
 		
-		$CI =& get_instance();
-		
 		if (!file_exists($pasta)){
 			
 			mkdir($pasta, 0777);
@@ -42,6 +40,36 @@ if (!function_exists('excluir_arquivo')) {
 	function excluir_arquivo($obj){
 
 		if (file_exists($obj)) unlink($obj);
+	}
+}
+
+if (!function_exists('formata_data_db')) {
+	
+	function formata_data_db($date){
+		
+		if (strlen($date) == 10) {
+
+			return implode("-",array_reverse(explode("/",$date)));
+	
+		} else {
+			
+			return null;
+		}
+	}
+}
+
+if (!function_exists('formata_data_br')) {
+	
+	function formata_data_br($date){
+		
+		if (strlen($date) == 10) {
+
+			return implode("/",array_reverse(explode("-",$date)));
+	
+		} else {
+			
+			return null;
+		}
 	}
 }
 

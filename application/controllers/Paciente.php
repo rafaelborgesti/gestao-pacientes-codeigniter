@@ -86,7 +86,7 @@ class Paciente extends CI_Controller {
 			$data = $_POST;
 			$data["nome"] = $this->input->post("nome");
 			$data["nome_mae"] = $this->input->post("nome_mae");
-			$data["data_nascimento"] = implode("-",array_reverse(explode("/",$this->input->post("data_nascimento"))));
+			$data["data_nascimento"] = formata_data_db($this->input->post("data_nascimento"));
 			$data["cpf"] = str_replace(".","",str_replace("-","",$this->input->post("cpf")));
 			$data["cns"] = $this->input->post("cns");
 			$data["cep"] = str_replace("-","",$this->input->post("cep"));

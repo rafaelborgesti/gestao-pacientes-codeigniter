@@ -37,7 +37,7 @@
                 <tr>
                     <td scope="row"><?php echo $paciente->nome ?></td>
                     
-                    <td scope="row"><?php echo implode("/",array_reverse(explode("-",$paciente->data_nascimento))); ?></td>
+                    <td scope="row"><?php echo formata_data_br($paciente->data_nascimento); ?></td>
                     <td scope="row"><?php echo $paciente->cpf ?></td>
                     <td scope="row"><?php echo $paciente->cns ?></td>
                     <td scope="row"><?php echo $paciente->uf ?></td>
