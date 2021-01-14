@@ -22,74 +22,80 @@
 
 	var base_url = $('.navbar-brand').attr('href');
 
+	var reload = function(){
+		window.location.href = window.location.href;
+	}
+
     $(".cpf-mask").mask("000.000.000-00");
     $(".cns-mask").mask("000000000000000");
     $(".cep-mask").mask("00000-000");
 
-    $('.consulta-cep').on('keyup',function(){
+	if ($('.consulta-cep').length) {
 
-		var cep = $(this).val();
-		cep = cep.replace('-', '');
-		cep = cep.replace(/_/g, ' ');
-		cep = cep.trim();
+		$('.consulta-cep').on('keyup',function(){
 
-		if ( cep.length == 8 ){
+			var cep = $(this).val();
+			cep = cep.replace('-', '');
+			cep = cep.replace(/_/g, ' ');
+			cep = cep.trim();
 
-			$.ajax({
-				type: "GET",
-				url: 'https://viacep.com.br/ws/'+cep+'/json/',
-				async: false,
-				dataType : "HTML",
-				success: function(status){
-					
-					//alert(status);
+			if ( cep.length == 8 ){
+
+				$.ajax({
+					type: "GET",
+					url: 'https://viacep.com.br/ws/'+cep+'/json/',
+					async: false,
+					dataType : "HTML",
+					success: function(status){
 						
-				},complete: function(resp){
-					
-					var IS_JSON = true;
-					
-					try
-					{
-						var resp_json = $.parseJSON(resp.responseText);
-					}
-					catch(err)
-					{
-						IS_JSON = false;
-					}
-					
-					if ( IS_JSON ){
+						//alert(status);
+							
+					},complete: function(resp){
 						
-						resp = resp_json;
+						var IS_JSON = true;
 						
-						if (!resp.erro) {
-
-							var logradouro = $('input[name="logradouro"]');
-							var estado = $('input[name="estado"]');
-                            var bairro = $('input[name="bairro"]');
-                            var uf = $('input[name="uf"]');
-
-							logradouro.val(resp.logradouro);
-							estado.val(resp.localidade);
-                            bairro.val(resp.bairro);
-                            uf.val(resp.uf);
-
-						} else {
-
-							alert('CEP não encontrado');
-							$('input[name="logradouro"]').val("");
-                            $('input[name="estado"]').val("");
-                            $('input[name="bairro"]').val("");
-                            $('input[name="uf"]').val("");
+						try
+						{
+							var resp_json = $.parseJSON(resp.responseText);
 						}
+						catch(err)
+						{
+							IS_JSON = false;
+						}
+						
+						if ( IS_JSON ){
+							
+							resp = resp_json;
+							
+							if (!resp.erro) {
+
+								var logradouro = $('input[name="logradouro"]');
+								var estado = $('input[name="estado"]');
+								var bairro = $('input[name="bairro"]');
+								var uf = $('input[name="uf"]');
+
+								logradouro.val(resp.logradouro);
+								estado.val(resp.localidade);
+								bairro.val(resp.bairro);
+								uf.val(resp.uf);
+
+							} else {
+
+								alert('CEP não encontrado');
+								$('input[name="logradouro"]').val("");
+								$('input[name="estado"]').val("");
+								$('input[name="bairro"]').val("");
+								$('input[name="uf"]').val("");
+							}
+						}
+					},
+					error: function(){
+						alert('Ajax request failed. (cep)');
 					}
-				},
-				error: function(){
-					alert('Ajax request failed. (cep)');
-				}
-			});
-		}
-    });
-	
+				});
+			}
+		});
+	}
  
 	if ($('input[type=file]').length) {
 
@@ -135,11 +141,8 @@
 					//upload failed
 					$('#progress').html("Failure!<br>" + error.name + ": " + error.message);
 				}
-	   
 			});
-	   
 		});
-
 	}
 
 	if ($('#btn-excluir-foto-paciente').length) {
@@ -177,11 +180,11 @@
 								IS_JSON = false;
 							}
 							
-							if ( IS_JSON ){
+							if (IS_JSON){
 								
 								resp = resp_json;
 								
-								if (resp.status == 'error'){
+								if (resp.status == 'error') {
 									
 									alert(resp.mensagem);
 									
@@ -191,22 +194,73 @@
 									$('#btn-excluir-foto-paciente').prop("disabled", true);
 
 								}
-
 							}
-							
-						}
-							
+						}	
 					});
 					
 					e.preventDefault();
-					
 				}
-
 			}
-			
 		});
-
 	}
-	   
+
+	if ($('.btn-excluir-paciente').length) {
+	
+		$(document).on('click','.btn-excluir-paciente',function(e) {
+			
+			var obj = $(this);
+			var uuid = obj.data('uuid');
+
+			if (uuid) {
+				
+				if (confirm('Deseja realmente excluir?')) {
+					
+					$.ajax({
+						type: "POST",
+						url: base_url+'paciente/excluir',
+						data: {uuid:uuid},
+						dataType : "JSON",
+						success: function(status){
+
+							//alert(status);
+							//console.log(status);
+								
+						},complete: function(resp){
+
+							var IS_JSON = true;
+							
+							//console.log(resp);
+							
+							try
+							{
+								var resp_json = $.parseJSON(resp.responseText);
+							}
+							catch(err)
+							{
+								IS_JSON = false;
+							}
+							
+							if (IS_JSON){
+								
+								resp = resp_json;
+								
+								if (resp.status == 'error') {
+									
+									alert(resp.mensagem);
+									
+								} else {
+
+									reload();
+
+								}
+							}
+						}	
+					});
+					
+					e.preventDefault();
+				}
+			}
+		});
+	}
 
 })(jQuery);

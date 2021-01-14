@@ -10,7 +10,7 @@
 		<link type="text/css" rel="stylesheet" href="<?php echo base_url('public'); ?>/css/styles.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="sb-nav-fixed">
+    <body class="sb-nav-fixed sb-sidenav-toggled">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand" href="<?php echo base_url(); ?>">Gestão de Pacientes</a>
             <?php if ($this->session->userdata('usurlogged')): ?>

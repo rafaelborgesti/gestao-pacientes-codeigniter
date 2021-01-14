@@ -37,11 +37,9 @@ if (!function_exists('gerar_string_randomica')){
 	}
 }
 
-if (!function_exists('excluir')) {
+if (!function_exists('excluir_arquivo')) {
 	
-	function excluir($obj){
-		
-		$CI =& get_instance();
+	function excluir_arquivo($obj){
 
 		if (file_exists($obj)) unlink($obj);
 	}

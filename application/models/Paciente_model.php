@@ -95,4 +95,11 @@ class Paciente_model extends CI_Model {
     {
       return $this->db->update('paciente',['foto'=>''],array('id'=>$id));
     }
+
+    public function excluir($id){
+		
+      return $this->db->delete('paciente', array('id'=>$id));
+      
+    }
+
 }

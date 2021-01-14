@@ -21,7 +21,7 @@ class Paciente extends CI_Controller {
 		$this->pasta_imagem_screen = 'screen/';
 		$this->allowed_types = 'jpeg|jpg|png';
 		$this->max_size = 3072;
-		
+
 	}
 
 	public function index()
@@ -216,7 +216,7 @@ class Paciente extends CI_Controller {
 		$result['status'] = 'error';
 		$result['mensagem'] = 'Ocorreu um erro';
 		
-		if ( $this->input->post() ){
+		if ($this->input->post()){
 			
 			$paciente = $this->paciente_model->buscar_paciente_by_uuid($this->input->post('uuid'));
 			
@@ -224,11 +224,11 @@ class Paciente extends CI_Controller {
 				
 				$this->pasta_paciente = $paciente->uuid.'/';
 				
-				if ($this->paciente_model->remove_foto($paciente->id)){
+				if ($this->paciente_model->remove_foto($paciente->id)){ 
 					
-					excluir($this->pasta_upload.$this->pasta_paciente.$this->pasta_imagem.$paciente->foto);
-					excluir($this->pasta_upload.$this->pasta_paciente.$this->pasta_imagem.$this->pasta_imagem_thumb.$paciente->foto);
-					excluir($this->pasta_upload.$this->pasta_paciente.$this->pasta_imagem.$this->pasta_imagem_screen.$paciente->foto);
+					excluir_arquivo($this->pasta_upload.$this->pasta_paciente.$this->pasta_imagem.$paciente->foto);
+					excluir_arquivo($this->pasta_upload.$this->pasta_paciente.$this->pasta_imagem.$this->pasta_imagem_thumb.$paciente->foto);
+					excluir_arquivo($this->pasta_upload.$this->pasta_paciente.$this->pasta_imagem.$this->pasta_imagem_screen.$paciente->foto);
 					
 					$result['status'] = 'success';
 					$result['mensagem'] = 'Excluído com sucesso';
@@ -242,6 +242,43 @@ class Paciente extends CI_Controller {
 		
 		echo json_encode($result);
 		
+	}
+
+	public function excluir()
+	{
+
+		if (!$this->session->userdata('usurlogged')) exit;
+
+		$result['status'] = 'error';
+		$result['mensagem'] = 'Ocorreu um erro';
+
+		if ($this->input->post()) {
+			
+			$paciente = $this->paciente_model->buscar_paciente_by_uuid($this->input->post('uuid'));
+			
+			if (is_object($paciente)) {
+
+				if ($this->paciente_model->excluir($paciente->id)) {
+
+					$this->pasta_paciente = $paciente->uuid.'/';
+
+					if ($paciente->foto) {
+
+						excluir_arquivo($this->pasta_upload.$this->pasta_paciente.$this->pasta_imagem.$paciente->foto);
+						excluir_arquivo($this->pasta_upload.$this->pasta_paciente.$this->pasta_imagem.$this->pasta_imagem_thumb.$paciente->foto);
+						excluir_arquivo($this->pasta_upload.$this->pasta_paciente.$this->pasta_imagem.$this->pasta_imagem_screen.$paciente->foto);
+
+					}
+
+					$this->session->set_flashdata('sucesso_mensagem','Excluído com sucesso');
+
+					$result['status'] = 'success';
+					$result['mensagem'] = 'Excluído com sucesso';
+
+				}
+			}
+		}
+		echo json_encode($result);
 	}
 
 }

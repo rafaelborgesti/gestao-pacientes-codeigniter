@@ -53,6 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['paciente/excluir'] = 'paciente/excluir';
 $route['paciente/excluir-imagem'] = 'paciente/excluir_imagem';
 $route['paciente/adicionar-imagem'] = 'paciente/adicionar_imagem';
 $route['paciente/editar/(.*)'] = 'paciente/editar/$1';
@@ -60,4 +61,4 @@ $route['paciente/cadastrar'] = 'paciente/cadastrar';
 $route['pacientes'] = 'paciente/index';
 $route['registrar'] = 'usuario/cadastrar';
 $route['login'] = 'usuario/login';
-$route['sair'] = 'usuario/logout'; 
+$route['sair'] = 'usuario/logout';

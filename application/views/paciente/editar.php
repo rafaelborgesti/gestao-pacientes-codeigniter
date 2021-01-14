@@ -16,7 +16,7 @@
             </div>
             <div class="form-group col-md-6">
                 <div>
-                <p>Tamanho máximo: 3 MB - imagens permitidas jpeg, jpg e png</p>
+                <p>Tamanho máximo: 3 MB - imagens permitidas: jpeg, jpg e png</p>
                 </div>
                 <div class="erros-foto-paciente" style="color:red;font-weight: bold;">
                 </div>
@@ -75,7 +75,7 @@
         <div class="form-row">
             <div class="form-group col-md-2">
                 <label for="cep">CEP</label>
-                <input type="text" class="form-control consulta-cep cep-mask <?php echo (form_error('cep')) ? 'is-invalid' : '' ?>" name="cep" value="<?php echo set_value('cep',@$paciente->data_nascimento); ?>" placeholder="CEP">
+                <input type="text" class="form-control consulta-cep cep-mask <?php echo (form_error('cep')) ? 'is-invalid' : '' ?>" name="cep" value="<?php echo set_value('cep',@$paciente->cep); ?>" placeholder="CEP">
                 <?php if (form_error('cep')): ?>
                 <div class="invalid-feedback"><?php echo form_error('cep'); ?></div>
                 <?php endif; ?>
@@ -122,7 +122,7 @@
         </div>
 
         <input type="submit" class="btn btn-success" value="Salvar">
-        <input type="submit" class="btn btn-danger" value="Excluir">
+        <a href="javascript:void(0);" class="btn btn-danger btn-excluir-paciente" data-uuid="<?php echo $paciente->uuid; ?>">Excluir</a>
     </form>
         </div>
     </div>
