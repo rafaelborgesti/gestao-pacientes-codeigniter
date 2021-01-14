@@ -17,6 +17,7 @@
                     </div>
                     <?php endif; ?>
                     <form action="<?php echo base_url("login"); ?>" method="POST">
+                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                         <div class="form-group">
                             <label class="small mb-1" for="email">E-mail</label>
                             <input class="form-control py-4 <?php echo (form_error('email')) ? 'is-invalid' : '' ?>" name="email" type="email" value="<?php echo set_value('email',@$paciente->email); ?>" placeholder="Digite o e-mail" />

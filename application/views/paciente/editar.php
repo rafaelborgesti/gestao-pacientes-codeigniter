@@ -34,6 +34,7 @@
 
         </div>
         <form class="form-group" action="<?php echo base_url("paciente/editar/".$paciente->uuid); ?>" method="POST">
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
         <div class="form-row align-items-center">
             <div class="form-group col-md-6">
                 <label for="nome">Nome paciente</label>
