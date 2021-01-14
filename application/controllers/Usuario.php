@@ -20,11 +20,11 @@ class Usuario extends CI_Controller {
 
 		if ($this->session->userdata('usurlogged')) redirect(base_url('paciente'));
 
-		if ($this->input->post()){
+		if ($this->input->post()) {
 			
 			$login = $this->usuario_model->buscar_usuario_by_email($this->input->post("email"));
 
-			if (is_object($login)){
+			if (is_object($login)) {
 
 				if (password_verify($this->input->post("senha"), $login->senha)) {
 
@@ -71,7 +71,7 @@ class Usuario extends CI_Controller {
 
 		if ($this->session->userdata('usurlogged')) redirect(base_url('paciente'));
 		
-		if ($this->input->post()){
+		if ($this->input->post()) {
 			
 			$data = [];
 			$data["uuid"] = $this->uuid->v4();

@@ -8,6 +8,31 @@
     </ol>
     <div class="card mb-4">
         <div class="card-body">
+        <div class="form-row align-items-center">
+            <div class="form-group col-md-4">
+                <img class="foto-paciente" 
+                src="<?php echo ($paciente->foto) ? base_url("public/upload/".$paciente->uuid."/imagem/screen/".$paciente->foto) : base_url('public/image/foto_default.jpg'); ?>" 
+                class="rounded" alt="Foto paciente" width=250 height=250>
+            </div>
+            <div class="form-group col-md-6">
+                <div>
+                <p>Tamanho máximo: 3 MB - imagens permitidas jpeg, jpg e png</p>
+                </div>
+                <div class="erros-foto-paciente" style="color:red;font-weight: bold;">
+                </div>
+                <hr>
+                <input type="button" class="btn btn-danger" id="btn-excluir-foto-paciente" value="Excluir" <?php echo (!$paciente->foto) ? "disabled" : "" ?>>
+                <hr>
+                <input type="file" name="imagem">
+                <hr>
+                <div class="progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+
+            <input type="hidden" name="paciente_uuid" value="<?php echo $paciente->uuid; ?>">
+
+        </div>
         <form class="form-group" action="<?php echo base_url("paciente/editar/".$paciente->uuid); ?>" method="POST">
         <div class="form-row align-items-center">
             <div class="form-group col-md-6">
@@ -102,6 +127,5 @@
         </div>
     </div>
 </div>
-
 
 </main>

@@ -13,7 +13,7 @@ class Usuario_model extends CI_Model {
         $status = 0;
 		$data = array();
 	
-		if (isset($params) && count($params)){
+		if (isset($params) && count($params)) {
 			
 			if (isset($params['uuid'])) $data['uuid'] = $params['uuid'];
 			if (isset($params['nome'])) $data['nome'] = $params['nome'];
@@ -30,7 +30,7 @@ class Usuario_model extends CI_Model {
 
 	public function buscar_usuario_by_email($email)
 	{
-		if (isset($email)){
+		if (isset($email)) {
 
 			$this->db->from('usuario');
 			$this->db->where('email',$email);

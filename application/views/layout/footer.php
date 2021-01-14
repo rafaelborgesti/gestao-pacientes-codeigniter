@@ -12,5 +12,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery.mask.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/scripts.js"></script>
+        <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/simpleUpload.min.js"></script>
+        
     </body>
 </html>

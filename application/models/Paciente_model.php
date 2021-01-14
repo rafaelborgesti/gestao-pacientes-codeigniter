@@ -20,7 +20,7 @@ class Paciente_model extends CI_Model {
       $status = 0;
 		  $data = array();
 	
-      if (isset($params) && count($params)){
+      if (isset($params) && count($params)) {
 
         if (isset($params['uuid'])) $data['uuid'] = $params['uuid'];
         if (isset($params['foto'])) $data['foto'] = $params['foto'];
@@ -46,9 +46,9 @@ class Paciente_model extends CI_Model {
       return $status;
     }
 
-    public function buscar_usuario_by_uuid($uuid)
+    public function buscar_paciente_by_uuid($uuid)
     {
-      if (isset($uuid)){
+      if (isset($uuid)) {
 
         $this->db->from('paciente');
         $this->db->where('uuid',$uuid);
@@ -62,8 +62,9 @@ class Paciente_model extends CI_Model {
         $status = 0;
         $data = array();
         
-        if (isset($params) && count($params)){
+        if (isset($params) && count($params)) {
           
+          if (isset($params['foto'])) $data['foto'] = $params['foto'];
           if (isset($params['nome'])) $data['nome'] = $params['nome'];
           if (isset($params['nome_mae'])) $data['nome_mae'] = $params['nome_mae'];
           if (isset($params['data_nascimento'])) $data['data_nascimento'] = $params['data_nascimento'];
@@ -79,7 +80,7 @@ class Paciente_model extends CI_Model {
           if (isset($params['st_ativo'])) $data['st_ativo'] = $params['st_ativo'];
           if (isset($params['st_cadastro'])) $data['st_cadastro'] = $params['st_cadastro'];
             
-            if (isset($params['id'])){
+            if (isset($params['id'])) {
                 
                 if ($this->db->update('paciente',$data,array('id'=>$params['id']))) $status = 1;
                 
@@ -88,5 +89,10 @@ class Paciente_model extends CI_Model {
         }
         
         return $status;
+    }
+
+    public function remove_foto($id)
+    {
+      return $this->db->update('paciente',['foto'=>''],array('id'=>$id));
     }
 }
