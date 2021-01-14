@@ -28,7 +28,8 @@
 
     $(".cpf-mask").mask("000.000.000-00");
     $(".cns-mask").mask("000000000000000");
-    $(".cep-mask").mask("00000-000");
+	$(".cep-mask").mask("00000-000");
+	$(".dt-nasc").mask("00/00/0000");
 
 	if ($('.consulta-cep').length) {
 
@@ -39,7 +40,7 @@
 			cep = cep.replace(/_/g, ' ');
 			cep = cep.trim();
 
-			if ( cep.length == 8 ){
+			if (cep.length == 8) {
 
 				$.ajax({
 					type: "GET",
@@ -63,7 +64,7 @@
 							IS_JSON = false;
 						}
 						
-						if ( IS_JSON ){
+						if (IS_JSON){
 							
 							resp = resp_json;
 							

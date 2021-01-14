@@ -58,7 +58,7 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="data_nascimento">Data de Nascimento</label>
-                <input type="text" class="form-control <?php echo (form_error('data_nascimento')) ? 'is-invalid' : '' ?>" name="data_nascimento" value="<?php echo set_value('data_nascimento',implode("/",array_reverse(explode("-",@$paciente->data_nascimento)))); ?>" placeholder="Data de Nascimento">
+                <input type="text" class="form-control dt-nasc <?php echo (form_error('data_nascimento')) ? 'is-invalid' : '' ?>" name="data_nascimento" value="<?php echo set_value('data_nascimento',implode("/",array_reverse(explode("-",@$paciente->data_nascimento)))); ?>" placeholder="Data de Nascimento">
                 <?php if (form_error('data_nascimento')): ?>
                 <div class="invalid-feedback"><?php echo form_error('data_nascimento'); ?></div>
                 <?php endif; ?>
