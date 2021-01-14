@@ -3,6 +3,8 @@
 
 Sistema de gerenciamento de pacientes desenvolvido com o framework Codeigniter usando o banco de dados PostgreSQL.
 
+![image](https://user-images.githubusercontent.com/29020816/104546922-06495e80-560c-11eb-9c95-da8fcf565c72.png)
+
 ## Instalação
 
 1 - Clonar o projeto no diretório do servidor web.
